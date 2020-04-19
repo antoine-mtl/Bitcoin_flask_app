@@ -252,7 +252,7 @@ def bitcoin_pred(load_data=False):
                 print('Loaded {} from cache'.format(quandl_id))
             except (OSError, IOError) as e:
                 print('Downloading {} from Quandl'.format(quandl_id))
-                df = quandl.get(quandl_id, authtoken='a3qYe_N9oy5Uba4d4x8c', returns="pandas")
+                df = quandl.get(quandl_id, returns="pandas")
                 df.to_pickle(cache_path)
                 print('Cached {} at {}'.format(quandl_id, cache_path))
             return df
@@ -373,12 +373,6 @@ def bitcoin_pred(load_data=False):
     df_prediction_plot['yhat_reg'] = list_concatene3
 
     return df_prediction_plot, bitcoin_data
-
-@app.route('/.well-known/brave-rewards-verification.txt')
-
-
-def file_sender():
-    return flask.send_file("brave-rewards-verification.txt")
 
 
 if __name__ == "__main__":
